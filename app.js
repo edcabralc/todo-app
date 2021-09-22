@@ -31,7 +31,7 @@ const deleteTodoIntoDOM = (event) => {
     }
 };
 
-const teste = (event) => {
+const searchTodo = (event) => {
     event.preventDefault();
     const inputValue = event.target.value.trim().toLowerCase();
 
@@ -54,4 +54,4 @@ formAddTodos.addEventListener("submit", insertTodoIntoDOM);
 
 todosContainer.addEventListener("click", deleteTodoIntoDOM);
 
-inputSearchTodo.addEventListener("input", teste);
+inputSearchTodo.addEventListener("input", searchTodo);
