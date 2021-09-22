@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+            integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+            crossorigin="anonymous"
+        />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <title>todolist</title>
+    </head>
+    <body>
+        <div class="container">
+            <h2 class="h2">TODO LIST</h2>
+            <form class="form-search-todos">
+                <div class="input-group">
+                    <label class="label" for="">Buscar to-do</label>
+                    <input
+                        class="input"
+                        autofocus
+                        placeholder="Buscar to-do"
+                        type="text"
+                        name="search"
+                    />
+                </div>
+            </form>
+            <form class="form-add-todo">
+                <div class="input-group">
+                    <label class="label" for="">Adicionar to-do</label>
+                    <input class="input" type="text" name="add" />
+                </div>
+            </form>
+
+            <div class="todos-container">
+                <ul>
+                    <li>
+                        <span>Vou fazer isso</span>
+                        <i class="far fa-trash-alt delete"></i>
+                    </li>
+                    <li>
+                        <span> depois isso </span>
+                        <i class="far fa-trash-alt delete"></i>
+                    </li>
+                    <li>
+                        <span>para fazer isso</span>
+                        <i class="far fa-trash-alt delete"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+    <script src="app.js"></script>
+</html>

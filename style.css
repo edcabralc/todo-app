@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    display: flex;
+    max-width: 100vw;
+    justify-content: center;
+    background-color: #eef2ff;
+}
+
+h2 {
+    text-align: center;
+    color: #4f46e5;
+    padding: 0.5rem;
+}
+
+.container {
+    max-width: 100%;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    margin: 5rem;
+    padding: 2rem 2rem 1rem 2rem;
+    border: 1px solid #e7e9ec;
+    border-radius: 0.5rem;
+}
+
+.todos-container {
+    margin: 2rem 0;
+}
+
+.todos-container ul li {
+    background-color: #f9fafb;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.2rem;
+    border: 1px solid #e7e9ec;
+    color: #626770;
+    font-weight: 400;
+}
+
+.input-group {
+    padding: 0.5rem 0;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    padding: 0.8rem 0.5rem;
+    border-radius: 0.2rem;
+    border: 2px solid #e7e9ec;
+}
+
+.label {
+    display: inline-block;
+    width: 100%;
+    padding: 0.5rem 0;
+    margin: 0.5rem 0;
+    top: 0;
+    right: 0;
+    color: #626770;
+    font-weight: 700;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: flex;
+}
+
+.delete {
+    cursor: pointer;
+}
+
+.delete:hover {
+    color: red;
+}
