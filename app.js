@@ -2,15 +2,14 @@ const todosContainer = document.querySelector(".todos-container ul");
 const formAddTodos = document.querySelector(".form-add-todo");
 const inputSearchTodo = document.querySelector(".form-search-todos input");
 
-// const deleteTodoIntoDOM = Array.from(todosContainer.children);
-// deleteTodoIntoDOM.forEach((item) => console.log(item));
+console.log(todosContainer.previousElementSibling);
 
-const insertTodoIntoDOM = (event) => {
+const addTodo = (event) => {
     event.preventDefault();
     const inputValue = event.target.add.value.trim();
 
     if (inputValue.length) {
-        todosContainer.innerHTML += `<li>
+        todosContainer.innerHTML += `<li class='visible'>
                         <span>${inputValue}</span>
                         <i class="far fa-trash-alt delete"></i>
                         </li>`;
@@ -19,7 +18,7 @@ const insertTodoIntoDOM = (event) => {
     }
 };
 
-const deleteTodoIntoDOM = (event) => {
+const removeTodo = (event) => {
     const clickedElement = event.target;
 
     const hasDeleteClass = Array.from(clickedElement.classList).includes(
@@ -50,8 +49,6 @@ const searchTodo = (event) => {
         });
 };
 
-formAddTodos.addEventListener("submit", insertTodoIntoDOM);
-
-todosContainer.addEventListener("click", deleteTodoIntoDOM);
-
+formAddTodos.addEventListener("submit", addTodo);
+todosContainer.addEventListener("click", removeTodo);
 inputSearchTodo.addEventListener("input", searchTodo);
