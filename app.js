@@ -2,8 +2,6 @@ const todosContainer = document.querySelector(".todos-container ul");
 const formAddTodos = document.querySelector(".form-add-todo");
 const inputSearchTodo = document.querySelector(".form-search-todos input");
 
-console.log(todosContainer.previousElementSibling);
-
 const addTodo = (event) => {
     event.preventDefault();
     const inputValue = event.target.add.value.trim();
