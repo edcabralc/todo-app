@@ -1,67 +1,75 @@
 "use client";
+
+import { useState } from "react";
+
+import { Todo } from "@/data/@types/todo.type";
+
+import { formatText } from "@/helpers/formatText";
+
+import { PlusIcon, Trash2Icon } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { PlusIcon, Trash2Icon } from "lucide-react";
-import { useState } from "react";
 
 export default function Home() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Todo[]>([]);
   const [description, setDescription] = useState<string>("");
-  const [isDone, setIsDone] = useState<any>(false);
+  const [isDone, setIsDone] = useState<boolean>(false);
 
   const totalItemsTodo = items.length;
 
-  const handleOnSubmit = (e: any) => {
+  const handleOnSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const newTodo = { description, done: false, id: Date.now() };
+    const newTodo: Todo = { description, done: false, id: Date.now() };
     console.log(newTodo);
     handleAddTodoItems(newTodo);
     setDescription("");
   };
 
-  const handleAddTodoItems = (item: any) => {
-    setItems((items): any => [...items, item]);
+  const handleAddTodoItems = (item: Todo) => {
+    setItems((items): Todo[] => [...items, item]);
   };
 
-  const handleDeleteTodo = (id: any) => {
-    setItems((items: any) => items.filter((item: any) => item.id !== id));
+  const handleDeleteTodo = (id: number) => {
+    setItems((items: Todo[]) => items.filter((item: Todo) => item.id !== id));
   };
 
-  const handleUpdateTodo = (id: any) => {
-    setItems((items: any) =>
-      items.map((item: any) =>
+  const handleUpdateTodo = (id: number) => {
+    setItems((items: Todo[]) =>
+      items.map((item: Todo) =>
         item.id === id ? { ...item, done: !item.done } : item
       )
     );
     console.log(items);
   };
 
-  const formatText = (total: any) => {
-    return `Você tem ${
-      total >= 0 && total < 9 ? `0${total}` : `${total}`
-    } tarefa${total > 1 ? "s" : ""}`;
-  };
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-gradient-to-b from-sky-400 to-indigo-700">
+    <main className="flex min-h-screen flex-col items-center p-24 bg-gradient-to-b from-sky-400 to-indigo-700">
+      <h1 className="text-4xl font-extrabold p-6">TODO.App</h1>
       <Card className="flex flex-col space-y-8 w-[670px] p-6 bg-slate-100">
         <div className="flex gap-4 items-center">
           <div className="w-full flex gap-2">
             <Card className="w-full flex p-4 items-center focus-within:ring focus-visible:ring-offset-1 focus-within:ring-black">
               <div className="w-full flex flex-col gap-2 relative">
-                <Input
-                  type="text"
-                  name="addTodo"
-                  className="w-full border-transparent focus:outline-none focus:rounded-none focus:border-none focus-visible:ring-0"
-                  onChange={(e) => setDescription(e.target.value)}
-                  value={description}
-                  placeholder="Adicionar tarefa"
-                />
+                <form id="form-todo">
+                  <Input
+                    type="text"
+                    name="addTodo"
+                    className="w-full border-transparent focus:outline-none focus:rounded-none focus:border-none focus-visible:ring-0"
+                    onChange={(e) => setDescription(e.target.value)}
+                    value={description}
+                    placeholder="Adicionar tarefa"
+                  />
+                </form>
               </div>
-              <Button onClick={handleOnSubmit} className="border flex gap-2">
+              <Button
+                id="form-todo"
+                onClick={handleOnSubmit}
+                className="border flex gap-2"
+              >
                 <PlusIcon /> Add
               </Button>
             </Card>
@@ -78,11 +86,12 @@ export default function Home() {
               <div className="flex gap-4 flex-1 items-center">
                 <Checkbox
                   name="isDone"
-                  value={isDone}
-                  onChange={() => handleUpdateTodo(item.id)}
-                  className={isDone ? "text-gray-400" : ""}
+                  checked={item.done}
+                  onCheckedChange={() => handleUpdateTodo(item.id)}
+                  // onChange={}
+                  className={item.done ? "text-gray-400" : ""}
                 />
-                <p className={isDone ? "text-gray-400" : ""}>
+                <p className={item.done ? "text-gray-400" : ""}>
                   {item.description}
                 </p>
               </div>
