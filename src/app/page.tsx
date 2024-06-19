@@ -4,15 +4,13 @@ import { useState } from "react";
 
 import { Todo } from "@/data/@types/todo.type";
 
-import { formatText } from "@/helpers/formatText";
-
 import { PlusIcon, Trash2Icon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   const [items, setItems] = useState<Todo[]>([]);
@@ -106,21 +104,7 @@ export default function Home() {
             </Card>
           ))}
         </div>
-        {totalItemsTodo <= 0 ? null : (
-          <>
-            <Separator />
-            <div className="flex flex-col gap-4 justify-between md:items-center md:flex-row">
-              <div>
-                <p>{formatText(totalItemsTodo)}</p>
-              </div>
-              <div className="flex gap-4">
-                <Button variant={"link"}>All</Button>
-                <Button variant={"link"}>Done</Button>
-                <Button variant={"link"}>Undone</Button>
-              </div>
-            </div>
-          </>
-        )}
+        {totalItemsTodo <= 0 ? null : <Footer total={totalItemsTodo} />}
       </Card>
     </main>
   );
