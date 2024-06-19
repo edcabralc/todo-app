@@ -27,4 +27,4 @@ Projeto desenvolvido usando Next.js:
 
 Acesse o [link](https://edcabralc.github.io/todo-app/)
 
-![aplicativo todo]('./todo.png')
+![aplicativo todo]('https://github.com/edcabralc/todo-app/blob/main/todo.png')
