@@ -48,8 +48,8 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24 bg-gradient-to-b from-sky-400 to-indigo-700">
-      <h1 className="text-4xl font-extrabold p-6">TODO.App</h1>
-      <Card className="flex flex-col space-y-8 w-[670px] p-6 bg-slate-100">
+      <h1 className="absolute top-3 text-4xl font-extrabold p-6">TODO.App</h1>
+      <Card className="flex flex-col space-y-8 w-auto md:w-[670px] p-6 bg-slate-100">
         <div className="flex gap-4 items-center">
           <div className="w-full flex gap-2">
             <Card className="w-full flex p-4 items-center focus-within:ring focus-visible:ring-offset-1 focus-within:ring-black">
@@ -88,8 +88,7 @@ export default function Home() {
                   name="isDone"
                   checked={item.done}
                   onCheckedChange={() => handleUpdateTodo(item.id)}
-                  // onChange={}
-                  className={item.done ? "text-gray-400" : ""}
+                  className={`ml-2 ${item.done ? "text-gray-400" : ""}`}
                 />
                 <p className={item.done ? "text-gray-400" : ""}>
                   {item.description}
@@ -110,7 +109,7 @@ export default function Home() {
         {totalItemsTodo <= 0 ? null : (
           <>
             <Separator />
-            <div className="flex justify-between">
+            <div className="flex flex-col gap-4 justify-between md:items-center md:flex-row">
               <div>
                 <p>{formatText(totalItemsTodo)}</p>
               </div>
