@@ -25,6 +25,6 @@ Projeto desenvolvido usando Next.js:
 
 ## Deploy do projeto
 
-Acesse o [link](https://edcabralc.github.io/todo-app/)
+Acesse o [link](https://todo-app-orpin-eta-79.vercel.app/)
 
-![aplicativo todo]('./todo.png')
+![aplicativo todo](https://github.com/edcabralc/todo-app/blob/master/todo.png)
