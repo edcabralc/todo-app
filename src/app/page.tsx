@@ -45,8 +45,8 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 bg-gradient-to-b from-sky-400 to-indigo-700">
-      <h1 className="absolute top-3 text-4xl font-extrabold p-6">TODO.App</h1>
+    <main className="flex min-h-screen flex-col items-center p-6 gap-4 bg-gradient-to-b from-sky-400 to-indigo-700">
+      <h1 className="text-4xl font-extrabold">TODO.App</h1>
       <Card className="flex flex-col space-y-8 w-auto md:w-[670px] p-6 bg-slate-100">
         <div className="flex gap-4 items-center">
           <div className="w-full flex gap-2">
