@@ -50,13 +50,13 @@ export default function Home() {
       <Card className="flex flex-col space-y-8 w-auto md:w-[670px] p-6 bg-slate-100">
         <div className="flex gap-4 items-center">
           <div className="w-full flex gap-2">
-            <Card className="w-full flex p-4 items-center focus-within:ring focus-visible:ring-offset-1 focus-within:ring-black">
+            <Card className="w-full flex flex-col gap-4 p-4 items-center sm:flex-row focus-within:ring focus-visible:ring-offset-1 focus-within:ring-black">
               <div className="w-full flex flex-col gap-2 relative">
                 <form id="form-todo">
                   <Input
                     type="text"
                     name="addTodo"
-                    className="w-full border-transparent focus:outline-none focus:rounded-none focus:border-none focus-visible:ring-0"
+                    className="w-full p-0 border-transparent focus:outline-none focus:rounded-none focus:border-none focus-visible:ring-0"
                     onChange={(e) => setDescription(e.target.value)}
                     value={description}
                     placeholder="Adicionar tarefa"
@@ -66,7 +66,7 @@ export default function Home() {
               <Button
                 id="form-todo"
                 onClick={handleOnSubmit}
-                className="border flex gap-2"
+                className="border w-full sm:w-auto flex gap-2"
               >
                 <PlusIcon /> Add
               </Button>
@@ -75,7 +75,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col gap-4">
           {items.length <= 0 && (
-            <p className="py-8 text-center">
+            <p className="py-4 sm:py-8 text-center">
               Você ainda não tem nenhuma tarefa. Adicione alguma tarefa 🚀.
             </p>
           )}
