@@ -2,18 +2,19 @@
 
 import { useState } from "react";
 
-import { Todo } from "@/data/@types/todo.type";
+import { Todo as TodoItem } from "@/data/@types/todo.type";
 
 import { PlusIcon, Trash2Icon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Footer } from "@/components/Footer";
+import { Todo } from "@/components/Todo";
+import { EmptyAlert } from "@/components/EmptyAlert";
 
 export default function Home() {
-  const [items, setItems] = useState<Todo[]>([]);
+  const [items, setItems] = useState<TodoItem[]>([]);
   const [description, setDescription] = useState<string>("");
   const [isDone, setIsDone] = useState<boolean>(false);
 
@@ -21,23 +22,25 @@ export default function Home() {
 
   const handleOnSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const newTodo: Todo = { description, done: false, id: Date.now() };
+    const newTodo: TodoItem = { description, done: false, id: Date.now() };
     console.log(newTodo);
     handleAddTodoItems(newTodo);
     setDescription("");
   };
 
-  const handleAddTodoItems = (item: Todo) => {
-    setItems((items): Todo[] => [...items, item]);
+  const handleAddTodoItems = (item: TodoItem) => {
+    setItems((items): TodoItem[] => [...items, item]);
   };
 
   const handleDeleteTodo = (id: number) => {
-    setItems((items: Todo[]) => items.filter((item: Todo) => item.id !== id));
+    setItems((items: TodoItem[]) =>
+      items.filter((item: TodoItem) => item.id !== id)
+    );
   };
 
   const handleUpdateTodo = (id: number) => {
-    setItems((items: Todo[]) =>
-      items.map((item: Todo) =>
+    setItems((items: TodoItem[]) =>
+      items.map((item: TodoItem) =>
         item.id === id ? { ...item, done: !item.done } : item
       )
     );
@@ -47,7 +50,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-6 gap-4 bg-gradient-to-b from-sky-400 to-indigo-700">
       <h1 className="text-4xl font-extrabold">TODO.App</h1>
-      <Card className="flex flex-col space-y-8 w-auto md:w-[670px] p-6 bg-slate-100">
+      <Card className="w-full flex flex-col space-y-8 md:w-[670px] p-6 bg-slate-100">
         <div className="flex gap-4 items-center">
           <div className="w-full flex gap-2">
             <Card className="w-full flex flex-col gap-4 p-4 items-center sm:flex-row focus-within:ring focus-visible:ring-offset-1 focus-within:ring-black">
@@ -75,24 +78,12 @@ export default function Home() {
         </div>
         <div className="flex flex-col gap-4">
           {items.length <= 0 && (
-            <p className="py-4 sm:py-8 text-center">
+            <EmptyAlert>
               Você ainda não tem nenhuma tarefa. Adicione alguma tarefa 🚀.
-            </p>
+            </EmptyAlert>
           )}
-          {items.map((item: any, i) => (
-            <Card className="flex gap-2 border p-4 hover:bg-slate-300" key={i}>
-              <div className="flex gap-4 flex-1 items-center">
-                <Checkbox
-                  name="isDone"
-                  checked={item.done}
-                  onCheckedChange={() => handleUpdateTodo(item.id)}
-                  className={`ml-2 ${item.done ? "text-gray-400" : ""}`}
-                />
-                <p className={item.done ? "text-gray-400" : ""}>
-                  {item.description}
-                </p>
-              </div>
-
+          {items.map((item: any) => (
+            <Todo item={item} action={handleUpdateTodo} key={item.id}>
               <Button
                 variant="ghost"
                 size="icon"
@@ -101,7 +92,7 @@ export default function Home() {
               >
                 <Trash2Icon className="size-4" />
               </Button>
-            </Card>
+            </Todo>
           ))}
         </div>
         {totalItemsTodo <= 0 ? null : <Footer total={totalItemsTodo} />}
