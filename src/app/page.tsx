@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Footer } from "@/components/Footer";
 import { Todo } from "@/components/Todo";
 import { EmptyAlert } from "@/components/EmptyAlert";
+import { TodoBody } from "@/components/TodoBody";
 
 export default function Home() {
   const [items, setItems] = useState<TodoItem[]>([]);
@@ -76,25 +77,28 @@ export default function Home() {
             </Card>
           </div>
         </div>
-        <div className="flex flex-col gap-4">
-          {items.length <= 0 && (
-            <EmptyAlert>
-              Você ainda não tem nenhuma tarefa. Adicione alguma tarefa 🚀.
-            </EmptyAlert>
-          )}
-          {items.map((item: any) => (
-            <Todo item={item} action={handleUpdateTodo} key={item.id}>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="p-2 rounded-full"
-                onClick={() => handleDeleteTodo(item.id)}
-              >
-                <Trash2Icon className="size-4" />
-              </Button>
-            </Todo>
-          ))}
-        </div>
+        <TodoBody>
+          <>
+            {items.length <= 0 && (
+              <EmptyAlert>
+                Você ainda não tem nenhuma tarefa. Adicione alguma tarefa 🚀.
+              </EmptyAlert>
+            )}
+
+            {items.map((item: any) => (
+              <Todo item={item} action={handleUpdateTodo} key={item.id}>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="p-2 rounded-full"
+                  onClick={() => handleDeleteTodo(item.id)}
+                >
+                  <Trash2Icon className="size-4" />
+                </Button>
+              </Todo>
+            ))}
+          </>
+        </TodoBody>
         {totalItemsTodo <= 0 ? null : <Footer total={totalItemsTodo} />}
       </Card>
     </main>
