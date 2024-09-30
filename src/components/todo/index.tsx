@@ -1,9 +1,9 @@
 import React from "react";
 
-type TodoBody = {
+type Todo = {
   children: React.JSX.Element;
 };
 
-export const TodoBody = ({ children }: TodoBody) => {
+export const Todo = ({ children }: Todo) => {
   return <div className="flex flex-col gap-4">{children}</div>;
 };

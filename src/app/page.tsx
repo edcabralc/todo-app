@@ -2,50 +2,45 @@
 
 import { useState } from "react";
 
-import { Todo as TodoItem } from "@/data/@types/todo.type";
+import { TodoType } from "@/data/@types/todo.type";
 
-import { PlusIcon, Trash2Icon } from "lucide-react";
+import { Trash2Icon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Footer } from "@/components/Footer";
-import { Todo } from "@/components/Todo";
-import { EmptyAlert } from "@/components/EmptyAlert";
-import { TodoBody } from "@/components/TodoBody";
+import { Footer } from "@/components/footer";
+import { TodoItem } from "@/components/todo-item";
+import { EmptyAlert } from "@/components/empty-alert";
+import { Todo } from "@/components/todo";
+import { AddTodo } from "@/components/add-todo";
 
-export default function Home() {
-  const [items, setItems] = useState<TodoItem[]>([]);
+const Home = () => {
+  const [items, setItems] = useState<TodoType[]>([]);
   const [description, setDescription] = useState<string>("");
   const [isDone, setIsDone] = useState<boolean>(false);
 
   const totalItemsTodo = items.length;
 
-  const handleOnSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const newTodo: TodoItem = { description, done: false, id: Date.now() };
-    console.log(newTodo);
-    handleAddTodoItems(newTodo);
+  const handleCleanerDescription = () => {
     setDescription("");
   };
 
-  const handleAddTodoItems = (item: TodoItem) => {
-    setItems((items): TodoItem[] => [...items, item]);
+  const handleAddTodoItems = (item: TodoType) => {
+    setItems((items): TodoType[] => [...items, item]);
   };
 
   const handleDeleteTodo = (id: number) => {
-    setItems((items: TodoItem[]) =>
-      items.filter((item: TodoItem) => item.id !== id)
+    setItems((items: TodoType[]) =>
+      items.filter((item: TodoType) => item.id !== id)
     );
   };
 
   const handleUpdateTodo = (id: number) => {
-    setItems((items: TodoItem[]) =>
-      items.map((item: TodoItem) =>
+    setItems((items: TodoType[]) =>
+      items.map((item: TodoType) =>
         item.id === id ? { ...item, done: !item.done } : item
       )
     );
-    console.log(items);
   };
 
   return (
@@ -54,30 +49,13 @@ export default function Home() {
       <Card className="w-full flex flex-col space-y-8 md:w-[670px] p-6 bg-slate-100">
         <div className="flex gap-4 items-center">
           <div className="w-full flex gap-2">
-            <Card className="w-full flex flex-col gap-4 p-4 items-center sm:flex-row focus-within:ring focus-visible:ring-offset-1 focus-within:ring-black">
-              <div className="w-full flex flex-col gap-2 relative">
-                <form id="form-todo">
-                  <Input
-                    type="text"
-                    name="addTodo"
-                    className="w-full p-0 border-transparent focus:outline-none focus:rounded-none focus:border-none focus-visible:ring-0"
-                    onChange={(e) => setDescription(e.target.value)}
-                    value={description}
-                    placeholder="Adicionar tarefa"
-                  />
-                </form>
-              </div>
-              <Button
-                id="form-todo"
-                onClick={handleOnSubmit}
-                className="border w-full sm:w-auto flex gap-2"
-              >
-                <PlusIcon /> Add
-              </Button>
-            </Card>
+            <AddTodo
+              onSubmitTodo={handleAddTodoItems}
+              clearDescription={handleCleanerDescription}
+            />
           </div>
         </div>
-        <TodoBody>
+        <Todo>
           <>
             {items.length <= 0 && (
               <EmptyAlert>
@@ -86,7 +64,7 @@ export default function Home() {
             )}
 
             {items.map((item: any) => (
-              <Todo item={item} action={handleUpdateTodo} key={item.id}>
+              <TodoItem item={item} action={handleUpdateTodo} key={item.id}>
                 <Button
                   variant="ghost"
                   size="icon"
@@ -95,12 +73,14 @@ export default function Home() {
                 >
                   <Trash2Icon className="size-4" />
                 </Button>
-              </Todo>
+              </TodoItem>
             ))}
           </>
-        </TodoBody>
+        </Todo>
         {totalItemsTodo <= 0 ? null : <Footer total={totalItemsTodo} />}
       </Card>
     </main>
   );
-}
+};
+
+export default Home;
