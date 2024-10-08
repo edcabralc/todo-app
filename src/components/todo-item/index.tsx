@@ -1,14 +1,16 @@
 import { Card } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { TodoType } from "@/data/@types/todo.type";
+import { Button } from "../ui/button";
+import { Trash2Icon } from "lucide-react";
 
 type TodoCardType = {
   item: TodoType;
-  action: (id: number) => void;
-  children: React.JSX.Element;
+  onDelete: (id: string) => void;
+  onDone: (id: string) => void;
 };
 
-export const TodoItem = ({ item, action, children }: TodoCardType) => {
+export const TodoItem = ({ item, onDelete, onDone }: TodoCardType) => {
   const { done, id, description } = item;
 
   return (
@@ -17,12 +19,21 @@ export const TodoItem = ({ item, action, children }: TodoCardType) => {
         <Checkbox
           name="isDone"
           checked={done}
-          onCheckedChange={() => action(id)}
+          onCheckedChange={() => onDone(id)}
           className={`ml-2 ${done ? "text-gray-400" : ""}`}
         />
         <p className={done ? "text-gray-400" : ""}>{description}</p>
       </div>
-      <>{children}</>
+      <>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="p-2 rounded-full"
+          onClick={() => onDelete(id)}
+        >
+          <Trash2Icon className="size-4" />
+        </Button>
+      </>
     </Card>
   );
 };
