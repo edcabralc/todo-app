@@ -1,27 +1,32 @@
 # Aplicativo de tarefas - TODO List
 
-## Para rodar o projeto
+Este projeto foi feito pra aprender mais sobre reducers e estruturas de dados. A ideia foi explorar como gerenciar estado de forma eficaz e brincar com a manipulação de dados. Com os reducers, consegui criar uma interface interativa e bem responsiva.
 
-Após clonar o projeto abra o terminal e use um dos comandos:
+## Como instalar e como rodar o projeto
+
+Após clonar o projeto abra o terminal e instale as dependências
+
+```bash
+npm install ## ou npm i
+
+```
+
+Após a instalação, rode à aplicação com:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
 Abra o endereço [http://localhost:3000](http://localhost:3000) no seu navegador.
 
 ## Learn More
 
-Projeto desenvolvido usando Next.js:
+Projeto desenvolvido usando Next.js, Shadcn e React-Hook-Form:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Shadcn Documentation](https://ui.shadcn.com/docs) - Beautifully designed components.
+- [React-Hook-Form Documentation](https://react-hook-form.com/docs) - Performant, flexible and extensible forms with easy-to-use validation.
 
 ## Deploy do projeto
 

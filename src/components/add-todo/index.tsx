@@ -1,6 +1,7 @@
-import React from "react";
-import { z } from "zod";
+"use client";
+
 import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -11,18 +12,19 @@ import {
   FormItem,
   FormMessage,
 } from "../ui/form";
+
 import { PlusIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { TodoType } from "@/data/@types/todo.type";
+import { randomId } from "@/helpers/randomId";
 
 type AddTodoType = {
-  onSubmitTodo: (item: TodoType) => void;
-  clearDescription: () => void;
+  onAddTodo: (item: TodoType) => void;
 };
 
-export const AddTodo = ({ onSubmitTodo, clearDescription }: AddTodoType) => {
+export const AddTodo = ({ onAddTodo }: AddTodoType) => {
   const TodoSchema = z.object({
     description: z.string().min(2, { message: "Insira alguma tarefa" }),
   });
@@ -35,10 +37,9 @@ export const AddTodo = ({ onSubmitTodo, clearDescription }: AddTodoType) => {
   });
 
   const onSubmit = (data: any) => {
-    const newTodo: TodoType = { ...data, done: false, id: Date.now() };
-    onSubmitTodo(newTodo);
-    clearDescription();
-    console.log({ ...data, id: Date.now() });
+    const newTodo: TodoType = { id: randomId(), ...data, done: false };
+    onAddTodo(newTodo);
+    form.reset();
   };
 
   return (

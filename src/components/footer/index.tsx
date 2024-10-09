@@ -4,9 +4,17 @@ import { Button } from "@/components/ui/button";
 
 type FooterProps = {
   total: number;
+  onFilterAll: () => void;
+  onFilterDone: () => void;
+  onFilterUndone: () => void;
 };
 
-export const Footer = ({ total }: FooterProps) => {
+export const Footer = ({
+  total,
+  onFilterAll,
+  onFilterDone,
+  onFilterUndone,
+}: FooterProps) => {
   return (
     <>
       <Separator />
@@ -15,13 +23,13 @@ export const Footer = ({ total }: FooterProps) => {
           <p>{formatText(total)}</p>
         </div>
         <div className="space-x-6">
-          <Button className="p-0" variant={"link"}>
+          <Button className="p-0" variant={"link"} onClick={onFilterAll}>
             All
           </Button>
-          <Button className="p-0" variant={"link"}>
+          <Button className="p-0" variant={"link"} onClick={onFilterDone}>
             Done
           </Button>
-          <Button className="p-0" variant={"link"}>
+          <Button className="p-0" variant={"link"} onClick={onFilterUndone}>
             Undone
           </Button>
         </div>
