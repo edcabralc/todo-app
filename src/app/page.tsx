@@ -1,14 +1,13 @@
 "use client";
 
-import { TodoType } from "@/data/@types/todo.type";
 import { useTodos } from "@/hooks/useTodos";
 
-import { Card } from "@/components/ui/card";
-import { Footer } from "@/components/footer";
-import { TodoItem } from "@/components/todo-item";
-import { EmptyAlert } from "@/components/empty-alert";
-import { Todo } from "@/components/todo";
 import { AddTodo } from "@/components/add-todo";
+import { EmptyAlert } from "@/components/empty-alert";
+import { Footer } from "@/components/footer";
+import { Todo } from "@/components/todo";
+import { TodoItem } from "@/components/todo-item";
+import { Card } from "@/components/ui/card";
 import { useFilter } from "@/hooks/useFilter";
 
 const Home = () => {
